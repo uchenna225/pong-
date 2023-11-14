@@ -1,30 +1,30 @@
 from turtle import Turtle
 
-coordinates = ((-50, 280), (50, 280))
+coordinates = ((-50, 250), (50, 250))
 line = (0, 300)
 
 
 class Score(Turtle):
     def __init__(self):
         super().__init__()
-        self.score = 0
-        self.ht()
-        self.color("white")
         self.penup()
-        self.count()
-        self.sides()
-
-    def sides(self):
-        self.goto(line)
         self.color("white")
-        for i in range(600):
-            self.setheading(270)
-            self.fd(10)
-            self.penup()
-            self.fd(10)
-            self.pendown()
+        self.ht()
+        self.p1_score = 0
+        self.p2_score = 0
+        self.count()
 
     def count(self):
-        for i in range(len(coordinates)):
-            self.goto(coordinates[i])
-            self.write(f"score: {self.score}", align="center", font=("Arial", 16, "normal"))
+        self.clear()
+        self.goto(coordinates[0])
+        self.write(f"{self.p1_score }", align="center", font=("Arial", 26, "normal"))
+        self.goto(coordinates[1])
+        self.write(f"{self.p2_score}", align="center", font=("Arial", 26, "normal"))
+
+    def update_p1(self):
+        self.p1_score += 1
+        self.count()
+
+    def update_p2(self):
+        self.p2_score += 1
+        self.count()
